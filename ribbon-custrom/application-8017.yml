@@ -1,1 +1,46 @@
+server:
+  #项目端口
+  port: 8017
+  #＃应用程序的上下文路径
+  #context-path: /myeurekaserver
+
+spring:
+  application:
+    #未配置spring.application.name 或者 eureka.instance.appname 属性。如果这两个属性均不配置，
+    #就会导致eureka server上的应用名称 UNKNOWN 的问题
+    #应用程序名称
+    name: ribbon-custrom
+
+eureka:
+  
+
+  instance:
+    #设置当前实例的主机名称 使用  主机IP   
+    hostname: ${spring.cloud.client.ipAddress}
+    prefer-ip-address: true
+    #运行阶段执行健康检查的目的是为了从Eureka服务器注册表中识别(如果没开自我保护机制会删除。开了会保护)不可访问的微服务并更新服务实例列表 ；
+    #Eureka 服务器并不是向客户端发送心跳请求，而是反过来，Eureka 客户端将心跳发送到Eureka服务器，让服务器了解其状态。
+    #默认情况下Eureka客户会每隔30秒发送一次心跳来续约。 通过续约来告知Eureka Server该Eureka客户仍然存在，没有出现问题。 
+    #默认情况下，如果Eureka Server在90秒没有收到Eureka客户的续约，它会将实例从其注册表中删除（如果没有开启保护机制的话）
+    # renewal(续约。重申 的意思)
+    #用于定义服务续约任务的调用间隔时间，默认30秒
+    lease-renewal-interval-in-seconds: 30
+    #用于定义服务失效的时间（续约到期时间），默认为90秒   expiration(截止)
+    lease-expiration-duration-in-seconds: 90
+    
+  client:
+    #eureka 会默认把自己也当作服务注册，这在以后做高可用的时候会用到
+    #可以通过下面两行来禁用掉；但是 PRD 环境 需要服务中心高可用，如果只有一个服务中心，服务中心那么服务就不课用了，所以要把自己也注册到service-url.defaultZone
+    #register-with-eureka: false
+    #fetch-registry: false
+    #若是未禁用eureka服务注册中心的客户端注册行为，需提供service-url注册中心地址
+    service-url:
+      #高可用需要有多个服务中心，那么就需要写多个，把自己注册上去
+      defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/
+    healthcheck:
+      #开启健康检查  eureka.client.healthcheck.enabled=true
+      #必须设置在application.yml中，而不能设置在bootstrap.yml 中，否则一些场景下会导致应用状态 UNKNOWN 的问题
+      enabled: true 
+    
+    
 
