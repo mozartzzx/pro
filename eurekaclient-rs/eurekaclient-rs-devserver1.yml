@@ -5,7 +5,7 @@ server:
   #context-path: /myeurekaserver
 
 testzzx:
-  name: woshishui
+  name: woshinibaba
 eureka:
 
   instance:
