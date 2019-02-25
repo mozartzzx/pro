@@ -3,9 +3,10 @@ server:
   port: 8033
   #＃应用程序的上下文路径
   #context-path: /myeurekaserver
-  
-  eureka:
-  
+
+testzzx:
+  name: woshishui
+eureka:
 
   instance:
     #设置当前实例的主机名称 使用  主机IP   
