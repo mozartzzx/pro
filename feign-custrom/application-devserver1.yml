@@ -6,12 +6,6 @@ server:
 testzzx:
   name: hahaqq我up
 
-spring:
-  application:
-    #未配置spring.application.name 或者 eureka.instance.appname 属性。如果这两个属性均不配置，
-    #就会导致eureka server上的应用名称 UNKNOWN 的问题
-    #应用程序名称
-    name: feign-custrom
 
 eureka:
   
@@ -31,14 +25,7 @@ eureka:
     lease-expiration-duration-in-seconds: 90
     
   client:
-    #eureka 会默认把自己也当作服务注册，这在以后做高可用的时候会用到
-    #可以通过下面两行来禁用掉；但是 PRD 环境 需要服务中心高可用，如果只有一个服务中心，服务中心那么服务就不课用了，所以要把自己也注册到service-url.defaultZone
-    #register-with-eureka: false
-    #fetch-registry: false
-    #若是未禁用eureka服务注册中心的客户端注册行为，需提供service-url注册中心地址
-    service-url:
-      #高可用需要有多个服务中心，那么就需要写多个，把自己注册上去
-      defaultZone: http://127.0.0.1:8001/eureka/,http://127.0.0.1:8002/eureka/
+
     healthcheck:
       #开启健康检查  eureka.client.healthcheck.enabled=true
       #必须设置在application.yml中，而不能设置在bootstrap.yml 中，否则一些场景下会导致应用状态 UNKNOWN 的问题
