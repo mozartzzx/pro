@@ -3,6 +3,8 @@ server:
   port: 8016
   #＃应用程序的上下文路径
   #context-path: /myeurekaserver
+testzzx:
+  name: hahaqq
 
 spring:
   application:
