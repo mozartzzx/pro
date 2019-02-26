@@ -22,3 +22,6 @@ zuul:
     feign-custrom:
       path: /hellofegin/**
       serviceId: feign-custrom
+    ribbon-custrom:
+      path: /helloribbon/**
+      serviceId: ribbon-custrom
