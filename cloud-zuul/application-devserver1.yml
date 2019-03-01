@@ -25,3 +25,22 @@ zuul:
     ribbon-custrom:
       path: /helloribbon/**
       serviceId: ribbon-custrom
+  #zuul三种超时配置
+  #zuul 如果路由方式是serviceId的方式，那么ribbon的生效，如果是url的方式，则zuul.host开头的生效
+  host:
+    socket-timeout-millis: 6000
+    connect-timeout-millis: 6000
+
+#ribbon.ReadTimeout， ribbon.SocketTimeout这两个就是ribbon超时时间设置
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+#hystrix熔断超时
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
